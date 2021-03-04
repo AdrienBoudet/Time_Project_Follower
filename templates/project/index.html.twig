@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tous les Projets{% endblock %}
+
+{% block body %}
+    <a href="{{ path('_create') }}"> Ajouter un projet</a>
+
+    {% for project in projects %}
+    <div style="background-color: {{ project.color }};">
+        <a href="{{ path('_display', {id: project.id }) }}">{{ project.name }}</a>
+    </div>
+    {% endfor %}
+{% endblock %}
