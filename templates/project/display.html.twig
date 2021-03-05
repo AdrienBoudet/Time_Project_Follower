@@ -17,7 +17,7 @@
                 facturé: {{ task.isInvoiced ? 'oui' : 'non' }}
             </p>
             <a href="{{ path('task_update', {'taskId': task.id}) }}">éditer</a>
-            <a href="{{ path('task_delete', {'taskId': task.id}) }}">supprimer</a>
+            <a href="{{ path('task_delete', {'id': task.id}) }}">supprimer</a>
         </div>
         {% endfor %}
     </div>
