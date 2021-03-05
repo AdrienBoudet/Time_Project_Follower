@@ -24,7 +24,6 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('startAt')
             ->add('endAt')
             ->add('isInvoiced')
             ->add('project', EntityType::class, [

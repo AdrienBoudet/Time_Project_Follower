@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +18,7 @@ class MainController extends AbstractController
         $this->em = $entityManager;
     }
     /**
-     * @Route("/main", name="main")
+     * @Route("/", name="main")
      */
     public function index(): Response
     {

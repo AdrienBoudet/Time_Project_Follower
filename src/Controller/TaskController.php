@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Projects;
 use App\Entity\Tasks;
 use App\Form\TaskType;
-use App\Repository\TasksRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,8 +14,9 @@ class TaskController extends MainController
      */
     public function index(): Response
     {
-        return $this->render('task/index.html.twig', [
-            'controller_name' => 'TaskController',
+        $tasks = $this->em->getRepository(Tasks::class)->findAll();
+        return $this->render('task/index.html.twig',[
+            'tasks' => $tasks
         ]);
     }
 
