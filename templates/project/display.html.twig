@@ -16,6 +16,8 @@
                 date de fin: {{ task.endAt | date('d-m-Y')~' à '~ task.endAt | date('H:i') }}<br>
                 facturé: {{ task.isInvoiced ? 'oui' : 'non' }}
             </p>
+            <a href="{{ path('task_update', {'taskId': task.id}) }}">éditer</a>
+            <a href="{{ path('task_delete', {'taskId': task.id}) }}">supprimer</a>
         </div>
         {% endfor %}
     </div>
