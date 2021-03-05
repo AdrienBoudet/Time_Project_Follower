@@ -7,6 +7,8 @@ use App\Entity\Tasks;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -28,15 +30,14 @@ class TaskType extends AbstractType
             ->add('project', EntityType::class, [
                 'class' => Projects::class,
                 'choices' => $this->em->getRepository(Projects::class)->findall(),
-                'choice_value' => function (?Projects $projects){
-                return $projects ? $projects->getId() : "";
+                'choice_value' => function (?Projects $projects) {
+                    return $projects ? $projects->getId() : "";
                 },
-                'choice_label' => function (?Projects $projects){
-                return $projects ? $projects->getName(): "";
+                'choice_label' => function (?Projects $projects) {
+                    return $projects ? $projects->getName() : "";
                 }
             ]);
     }
-
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

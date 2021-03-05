@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Projects;
 use App\Entity\Tasks;
 use App\Form\TaskType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -41,5 +43,28 @@ class TaskController extends MainController
         return $this->render('task/create.html.twig',[
             'taskCreateForm' => $taskCreateForm->createView()
         ]);
+    }
+
+    /**
+     * @Route(path="/task/{taskId}/update", name="task_update")
+     * @Entity("task", expr="repository.find(taskId)")
+     */
+    public function update(Request $request,?Projects $projects,?Tasks $task): Response {
+
+        $updateTaskForm = $this->createForm(TaskType::class, $task);
+
+        $updateTaskForm->handleRequest($request);
+
+        if ($updateTaskForm->isSubmitted() && $updateTaskForm->isValid()) {
+            $this->em->flush();
+
+            return $this->redirectToRoute('project');
+        }
+
+
+        return $this->render('task/update.html.twig',[
+            'updateTaskForm' => $updateTaskForm->createView(),
+        ]
+        );
     }
 }
