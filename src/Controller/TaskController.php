@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Projects;
 use App\Entity\Tasks;
 use App\Form\TaskType;
+use App\Repository\TasksRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Entity;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,9 +48,11 @@ class TaskController extends MainController
 
     /**
      * @Route(path="/task/{taskId}/update", name="task_update")
-     * @Entity("task", expr="repository.find(taskId)")
+     * @param Request $request
+     * @param Tasks|null $task
+     * @return Response
      */
-    public function update(Request $request,?Projects $projects,?Tasks $task): Response {
+    public function update(Request $request,?Tasks $task): Response {
 
         $updateTaskForm = $this->createForm(TaskType::class, $task);
 
@@ -66,5 +69,16 @@ class TaskController extends MainController
             'updateTaskForm' => $updateTaskForm->createView(),
         ]
         );
+    }
+
+    /**
+     * @Route(path="task/{id}/delete", name="task_delete")
+     * @param Tasks $tasks
+     */
+    public function delete(Tasks $tasks)
+    {
+        $this->em->remove($tasks);
+        $this->em->flush();
+        return $this->redirectToRoute('project');
     }
 }
