@@ -16,9 +16,24 @@ body{
 }
 .btn{
     background-color: #6085ff;
-    border-radius: 30px;
-    padding: 1rem;
     color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+    text-decoration: none;
+    margin-top: 1em;
+}
+.btn-success{
+    background-color: #26ff38;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+.btn-danger{
+    background-color: #ff2120;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
     text-decoration: none;
 }
 /*TABLES*/

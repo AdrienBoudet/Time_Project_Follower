@@ -15,6 +15,7 @@
                 <th>Fin</th>
                 <th>temps de travail</th>
                 <th>Facturé</th>
+                <th>Modifier</th>
             </tr>
         </thead>
         <tbody>
@@ -23,20 +24,38 @@
             {% set project = task.getProject() %}
             <tr>
                 <td style="background-color: {{ project.color }};"></td>
-                <td>{{ project.name }}</td>
+                <td><a href="{{ path('_display', {'id':project.id }) }}">{{ project.name }}</a></td>
                 <td>{{ task.name }}</td>
                 <td>{{ task.startAt | date('d-m-Y H:i') }}</td>
                 <td>{{ task.endAt | date('d-m-Y H:i') }}</td>
-                {# endDate and startDate are strings or DateTime objects #}
-                {% set difference = date(task.endAt).diff(date(task.startAt)) %}
-                {% set leftDays = difference.days %}
-                {% if leftDays == 1 %}
-                    <td>1 day</td>
-                {% else %}
-                    <td>{{ leftDays }} days</td>
-                {% endif %}
-
-                <td>{{ task.isInvoiced ? 'oui' : 'non' }}</td>
+                <td>
+                    {% if task.getDiffinD == 1 %}
+                        {{ task.getDiffinD ~ ' jour' }}
+                    {% elseif task.getDiffinD > 1 %}
+                        {{ task.getDiffinD ~ ' jours' }}
+                    {% endif %}
+                    {% if task.getDiffinH == 1 %}
+                        {{ task.getDiffinH ~ ' heure' }}
+                    {% elseif task.getDiffinH > 1 %}
+                        {{ task.getDiffinH ~ ' heures' }}
+                    {% endif %}
+                    {% if task.getDiffinM == 1 %}
+                        {{ task.getDiffinM ~ ' minute' }}
+                    {% elseif task.getDiffinM > 1 %}
+                        {{ task.getDiffinM ~ ' minutes' }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if task.isInvoiced == false %}
+                        <a class="btn" href="{{ path('task_invoice',{'id' : task.id}) }}">facturer</a>
+                    {% else %}
+                        facturé
+                    {% endif %}
+                </td>
+                <td>
+                    <a class="btn" href="{{ path('task_update', {'id': task.id}) }}">éditer</a>
+                    <a class="btn-danger" href="{{ path('task_delete', {'id': task.id}) }}">supprimer</a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>

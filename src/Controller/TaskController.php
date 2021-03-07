@@ -45,14 +45,12 @@ class TaskController extends MainController
     }
 
     /**
-     * @Route(path="/task/{taskId}/update", name="task_update")
-     * @param Request $request
-     * @param Tasks|null $task
-     * @return Response
+     * @Route(path="/task/{id}/update", name="task_update")
      */
-    public function update(Request $request,?Tasks $task): Response {
+    public function update(Tasks $tasks, Request $request)
+    {
 
-        $updateTaskForm = $this->createForm(TaskType::class, $task);
+        $updateTaskForm = $this->createForm(TaskType::class, $tasks);
 
         $updateTaskForm->handleRequest($request);
 
@@ -71,12 +69,22 @@ class TaskController extends MainController
 
     /**
      * @Route(path="task/{id}/delete", name="task_delete")
-     * @param Tasks $tasks
      */
     public function delete(Tasks $tasks)
     {
         $this->em->remove($tasks);
         $this->em->flush();
         return $this->redirectToRoute('project');
+    }
+
+    /**
+     * @Route(path="task/{id}/invoice", name="task_invoice")
+     */
+    public function invoice(Tasks $tasks)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $tasks->setIsInvoiced(true);
+        $em->flush();
+        return $this->redirectToRoute('task');
     }
 }

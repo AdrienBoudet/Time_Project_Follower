@@ -3,11 +3,11 @@
 {% block title %}Ajouter un projet{% endblock %}
 
 {% block body %}
-    <div>
+    <div class="text-center">
         <h1>Ajouter un nouveau projet</h1>
         {{ form_start(projectCreateForm) }}
         {{ form_widget(projectCreateForm) }}
-        <button type="submit">Ajouter</button>
+        <button class="btn" type="submit">Ajouter</button>
         {{ form_end(projectCreateForm) }}
     </div>
 {% endblock %}

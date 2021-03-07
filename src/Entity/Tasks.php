@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\TasksRepository;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -60,24 +61,24 @@ class Tasks
         return $this;
     }
 
-    public function getStartAt(): ?\DateTimeInterface
+    public function getStartAt(): ?DateTimeInterface
     {
         return $this->startAt;
     }
 
-    public function setStartAt(\DateTimeInterface $startAt): self
+    public function setStartAt(DateTimeInterface $startAt): self
     {
         $this->startAt = $startAt;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeInterface
+    public function getEndAt(): ?DateTimeInterface
     {
         return $this->endAt;
     }
 
-    public function setEndAt(\DateTimeInterface $endAt): self
+    public function setEndAt(DateTimeInterface $endAt): self
     {
         $this->endAt = $endAt;
 
@@ -106,5 +107,23 @@ class Tasks
         $this->project = $project;
 
         return $this;
+    }
+    public function getDiffinD(): int
+    {
+        $origin = $this->getStartAt();
+        $target = $this->getEndAt();
+        return $origin->diff($target)->format('%d' );
+    }
+    public function getDiffinH(): int
+    {
+        $origin = $this->getStartAt();
+        $target = $this->getEndAt();
+        return $origin->diff($target)->format('%h' );
+    }
+    public function getDiffinM(): int
+    {
+        $origin = $this->getStartAt();
+        $target = $this->getEndAt();
+        return $origin->diff($target)->format('%i' );
     }
 }

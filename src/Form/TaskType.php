@@ -7,8 +7,9 @@ use App\Entity\Tasks;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -23,10 +24,20 @@ class TaskType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('endAt')
-            ->add('isInvoiced')
+            ->add('name',TextType::class,[
+                'label' => "Nom de la tache: "
+            ])
+            ->add('startAt',DateType::class,[
+                'label' => "Date de début"
+            ])
+            ->add('endAt',DateType::class,[
+                'label' => "Date de fin"
+            ])
+            ->add('isInvoiced',null ,[
+                'label' => "facturé: "
+            ])
             ->add('project', EntityType::class, [
+                'label' => "Projet: ",
                 'class' => Projects::class,
                 'choices' => $this->em->getRepository(Projects::class)->findall(),
                 'choice_value' => function (?Projects $projects) {
