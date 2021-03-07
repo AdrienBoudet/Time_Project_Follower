@@ -3,11 +3,28 @@
 {% block title %}Tous les Projets{% endblock %}
 
 {% block body %}
-    <a href="{{ path('_create') }}"> Ajouter un projet</a>
 
-    {% for project in projects %}
-    <div style="background-color: {{ project.color }};">
-        <a href="{{ path('_display', {id: project.id }) }}">{{ project.name }}</a>
-    </div>
-    {% endfor %}
+
+    <table>
+        <thead>
+            <tr>
+                <th>Couleur</th>
+                <th>Projet</th>
+                <th>Nombre de taches</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            {% set tasks = project.getTasks() %}
+                <tr>
+                    <td style="background-color: {{ project.color }};"></td>
+                    <td><a href="{{ path('_display', {id: project.id }) }}">{{ project.name }}</a></td>
+                    <td>{{ tasks.count }}</td>
+                </tr>
+
+
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="text-center"><a class="btn" href="{{ path('_create') }}"> Ajouter un projet</a></div>
 {% endblock %}

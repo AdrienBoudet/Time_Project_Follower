@@ -7,7 +7,6 @@ use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Extra\Intl\IntlExtension;
 
 class ProjectController extends MainController
 {
@@ -47,7 +46,7 @@ class ProjectController extends MainController
     }
 
     /**
-     * @Route(path="/project/{id}", name="_display", requirements={"id"="\d+"})
+     * @Route(path="/project/{id}", name="_display")
      */
     public function display($id): Response
     {

@@ -3,11 +3,11 @@
 {% block title %}Ajouter une tache{% endblock %}
 
 {% block body %}
-    <div>
+    <div class="text-center">
         <h1>Ajouter une nouvelle tache</h1>
         {{ form_start(taskCreateForm) }}
         {{ form_widget(taskCreateForm) }}
-        <button type="submit">Ajouter</button>
+        <button class="btn" type="submit">Ajouter</button>
         {{ form_end(taskCreateForm) }}
     </div>
 {% endblock %}

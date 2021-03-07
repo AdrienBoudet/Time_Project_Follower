@@ -1,0 +1,65 @@
+/*RESET*/
+body{
+    padding: 0;
+    margin: 0;
+}
+/*GENERIC*/
+.row{
+    display: flex;
+}
+.column{
+    display: flex;
+    flex-direction: column;
+}
+.text-center{
+    text-align: center;
+}
+.btn{
+    background-color: #6085ff;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+    text-decoration: none;
+    margin-top: 1em;
+}
+.btn-success{
+    background-color: #26ff38;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+.btn-danger{
+    background-color: #ff2120;
+    color: white;
+    border-radius: 30px;
+    padding: 0.5rem;
+    text-decoration: none;
+}
+/*TABLES*/
+table {
+    table-layout: fixed;
+    width: 90%;
+    border-collapse: collapse;
+    border: 3px solid #6085ff;
+    margin: 4rem auto 4rem;
+
+}
+th, td {
+    padding: 20px;
+    text-align: center;
+}
+/*HEADER*/
+navbar{
+    display: flex;
+    background-color: #6085ff;
+    justify-content: space-evenly;
+    height: 50px;
+
+}
+navbar a{
+    color: white;
+    text-decoration: none;
+    margin: auto;
+    font-size: larger;
+}
