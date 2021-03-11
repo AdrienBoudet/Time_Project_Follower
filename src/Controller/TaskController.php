@@ -12,11 +12,16 @@ class TaskController extends MainController
     /**
      * @Route("/task", name="task")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $tasks = $this->em->getRepository(Tasks::class)->findAll();
+        $start = $request->get('s');
+        $end = $request->get('e');
+
+        $tasks = $this->em->getRepository(Tasks::class)->findByDateRange($start, $end);
         return $this->render('task/index.html.twig',[
-            'tasks' => $tasks
+            'tasks' => $tasks,
+            'start' => $start,
+            'end' => $end,
         ]);
     }
 

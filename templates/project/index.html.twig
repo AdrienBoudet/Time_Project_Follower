@@ -11,6 +11,7 @@
                 <th>Couleur</th>
                 <th>Projet</th>
                 <th>Nombre de taches</th>
+                <th>Temps total</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,8 @@
                     <td style="background-color: {{ project.color }};"></td>
                     <td><a href="{{ path('_display', {id: project.id }) }}">{{ project.name }}</a></td>
                     <td>{{ tasks.count }}</td>
+                    <td>
+                    </td>
                 </tr>
 
 

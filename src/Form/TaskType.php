@@ -27,10 +27,10 @@ class TaskType extends AbstractType
             ->add('name',TextType::class,[
                 'label' => "Nom de la tache: "
             ])
-            ->add('startAt',DateType::class,[
+            ->add('startAt',null,[
                 'label' => "Date de début"
             ])
-            ->add('endAt',DateType::class,[
+            ->add('endAt',null,[
                 'label' => "Date de fin"
             ])
             ->add('isInvoiced',null ,[

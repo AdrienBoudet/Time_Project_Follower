@@ -112,18 +112,22 @@ class Tasks
     {
         $origin = $this->getStartAt();
         $target = $this->getEndAt();
+
         return $origin->diff($target)->format('%d' );
     }
     public function getDiffinH(): int
     {
         $origin = $this->getStartAt();
         $target = $this->getEndAt();
+
         return $origin->diff($target)->format('%h' );
     }
     public function getDiffinM(): int
     {
         $origin = $this->getStartAt();
         $target = $this->getEndAt();
+
         return $origin->diff($target)->format('%i' );
     }
+
 }
