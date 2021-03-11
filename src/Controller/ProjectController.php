@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Projects;
+use App\Entity\Tasks;
 use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,8 +17,10 @@ class ProjectController extends MainController
     public function index(): Response
     {
         $projects = $this->em->getRepository(Projects::class)->findAll();
+        $tasks = $this->em->getRepository(Tasks::class)->findAll();
         return $this->render('project/index.html.twig', [
-            'projects' => $projects
+            'projects' => $projects,
+            'tasks' => $tasks
         ]);
     }
 
